@@ -29,23 +29,22 @@ def HEU(node):
     return node[1]
 
 def hillClimb(start, graph):
-    path = []
+    closed = []
     node = start
     new_nodes = MOV(node, graph)
     SORT(new_nodes)
     child = new_nodes[0]
-    path.append(start)
-    path.append(child)
+    closed.append(start)
 
     while HEU(child) <= HEU(node):
         node = child
+        closed.append(node)
         new_nodes = MOV(node, graph)
         if new_nodes == -1:
-            return path
+            return closed
         SORT(new_nodes)
         child = new_nodes[0]
-        path.append(child)
 
-    return path
+    return closed
 
 print(hillClimb(('A', 5), graph))
